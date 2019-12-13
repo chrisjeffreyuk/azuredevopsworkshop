@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: basic-pod
+spec:
+  containers:
+    - name: basic
+      image: cjdemoacr12345.azurecr.io/workshop/strm/helloworld-http
+#      volumeMounts:
+#      - name: basic-config
+#        mountPath: /etc/nginx/conf.d
+  volumes:
+    - name: basic-config
+      configMap:
+        name: basic-config

@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: basic-deployment
+spec:
+  selector:
+    matchLabels:
+      app: basic
+  replicas: 2
+  template:
+    metadata:
+
+      labels:
+        app: basic
+    spec:
+      containers:
+      - image: cjdemoacr12345.azurecr.io/workshop/strm/helloworld-http
+        name: basic
+        ports:
+        - containerPort: 80
+#        volumeMounts:
+#        - name: config-volume
+#          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: config-volume
+        configMap:
+          name: basic-config
